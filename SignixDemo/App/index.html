@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Signix Demo</title>
+    <meta charset="utf-8" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        .blockUI.blockOverlay {
+            opacity: 0.15 !important;
+        }
+
+        .blockElement i {
+            font-size: 45px;
+            color: #337ab7;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="signixCtrl">
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../Scripts/angular.js"></script>
+    <script src="module.js"></script>
+    <script src="dataSvc.js"></script>
+    <script src="indexCtrl.js"></script>
+    <script src="directives.js"></script>
+    <script src="../Scripts/jquery.blockUI.js"></script>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Signix Demo</h2>
+        </div>
+        <div id="documentDetails" class="col-md-12" ng-show="!showSignixWizard" style="padding: 10px 10px 10px 10px">
+            <div class="row" style="margin-right: 0px;">
+                <a href="status.html" target="_blank" class="btn btn-default pull-right">Check Status</a>
+                <a href="signixNotifications.html" target="_blank" class="btn btn-default pull-right" style="margin-right: 10px;">Check Signix Notifications</a>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="col-xs-8">
+                        <label>Signer 1 Details: </label>
+                        <input type="text" ng-model="signer1.firstName" class="form-control" placeholder="First Name" />
+                        <br />
+                        <input type="text" ng-model="signer1.middleName" class="form-control" placeholder="Middle Name" />
+                        <br />
+                        <input type="text" ng-model="signer1.lastName" class="form-control" placeholder="Last Name" />
+                        <br />
+                        <input type="text" ng-model="signer1.email" class="form-control" placeholder="Email" />
+                        <br />
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <div class="col-xs-8">
+                        <label>Signer 2 Details (Optional): </label>
+                        <input type="text" ng-model="signer2.firstName" class="form-control" placeholder="First Name" />
+                        <br />
+                        <input type="text" ng-model="signer2.middleName" class="form-control" placeholder="Middle Name" />
+                        <br />
+                        <input type="text" ng-model="signer2.lastName" class="form-control" placeholder="Last Name" />
+                        <br />
+                        <input type="text" ng-model="signer2.email" class="form-control" placeholder="Email" />
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+
+                <div class="col-md-12">
+                    <label>Other Details (Optional): </label>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <br />
+                        <div class="col-xs-8">
+                            <input type="text" ng-model="docSetDescription" class="form-control" placeholder="Title for document (Use in emails)." />
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <br />
+                        <div class="col-xs-8">
+                            <input type="text" ng-model="submitterEmail" class="form-control" placeholder="Submitter Email" />
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <br />
+                        <div class="col-xs-4">
+                            <input type="text" ng-model="contactInfo" class="form-control" placeholder="Contact info to be shown in email to parties." />
+                        </div>
+                    </div>
+
+                    <!--<div class="col-xs-6">
+                        <br/>
+                        <div class="col-xs-8">
+                            <input type="text" ng-model="distributionEmailList" class="form-control" placeholder="Emails to send complete notification(; separated)."/>
+                        </div>
+                    </div>-->
+
+                    <div class="col-xs-6">
+                        <br />
+                        <div class="col-xs-10">
+                            <textarea ng-model="emailContent" class="form-control" placeholder="Email body Content for sending request to signers."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <br />
+                        <div class="col-xs-10">
+                            <textarea ng-model="distributionEmailContent" class="form-control" placeholder="Email body Content when transaction completes and send notifications."></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <br />
+                    <div class="col-xs-2">
+                        <label>Upload Contract: </label>
+                    </div>
+                    <div class="col-xs-10">
+                        <input id="documentFileId" type="file" file-model="contractDocument" accept=".pdf" />
+                    </div>
+
+                    <div class="col-md-12">
+                        <br />
+                        <button type="button" class="btn btn-primary" ng-click="submitDocument()">Submit</button>
+                        <button ng-click="closeSignixWizard()" class="btn btn-default">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="showSignixWizard">
+            <i class="fa fa-times fa-2x pull-right" ng-click="closeSignixWizard()" style="color: #5B7500; cursor: pointer;"></i>
+            <iframe id="signixWizardIframe" style="width: 100%; height: 700px"></iframe>
+        </div>
+    </div>
+</body>
+</html>

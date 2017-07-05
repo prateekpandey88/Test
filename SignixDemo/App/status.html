@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Signix Demo</title>
+    <meta charset="utf-8" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        .blockUI.blockOverlay {
+            opacity: 0.15 !important;
+        }
+
+        .blockElement i {
+            font-size: 45px;
+            color: #337ab7;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="signixCtrl">
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../Scripts/angular.js"></script>
+    <script src="module.js"></script>
+    <script src="dataSvc.js"></script>
+    <script src="statusCtrl.js"></script>
+    <script src="directives.js"></script>
+    <script src="../Scripts/jquery.blockUI.js"></script>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Signix Demo</h2>
+        </div>
+
+        <div class="col-md-12 table-responsive">
+            <h4>
+                Status:
+                <a href="/app/index.html" class="btn btn-default pull-right" style="margin-bottom: 10px; margin-left: 10px;">Back</a>
+                <button class="btn btn-default pull-right" ng-click="refresh()" style="margin-bottom: 10px;">Refresh</button>
+            </h4>
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        #.
+                    </th>
+                    <th>
+                        Signer 1
+                    </th>
+                    <th>
+                        Signer 2
+                    </th>
+                    <th>
+                        Submitter Email
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Created On
+                    </th>
+                </tr>
+                </thead>
+                <tbody ng-init="counter = 0">
+                <tr ng-repeat="item in items">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.Signer1Name}}</td>
+                    <td>{{item.Signer2Name}}</td>
+                    <td>{{item.SubmitterEmail}}</td>
+                    <td>{{item.Status}}</td>
+                    <td>{{item.CreatedOn | date : 'MM/dd/yyyy hh:mm a'}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+packages/*
+SignixDemo/bin/*
+SignixDemo/obj/*
+SignixDemo/UploadFiles/*
+.vs/SignixDemo/v14/.suo
